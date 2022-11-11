@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React , {useState,useEffect} from "react";
 import  {styled, createTheme, ThemeProvider} from '@mui/material/styles';
 
 import CssBaseline from '@mui/material/CssBaseline';
@@ -29,6 +29,8 @@ import MoneyIcon from '@mui/icons-material/Money';
 
 const drawerWidth = 240;
 const  emptype = 4;
+
+
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -102,7 +104,46 @@ const mainListItems = (
     
 </React.Fragment>
 );
+
+export function Employees_dropdown(){
+  //  'https://ayturwuui6.execute-api.us-east-1.amazonaws.com/test'
+  // https://api.publicapis.org/entries  
+  const [posts, setPosts] = useState([]);
+   useEffect(() => {
+      fetch('https://dfguqaaet4.execute-api.us-east-1.amazonaws.com/dev/employee', 
+      // fetch('https://api.publicapis.org/entries', 
+      {
+        method: 'GET',  
+        crossorigin: false,  
+        mode: 'cors',
+        // headers: {
+        //   'Accept' : '*/*',
+        //   'Access-Control-Allow-Origin' : '*',
+        //   // 'Access-Control-Request-Headers' : '*',
+        //   // 'Content-Type': 'application/x-www-form-urlencoded',
+        // },   
+      })
+      .then((response) => console.log(response.json()))
+      .then((data) => {
+          console.log(data);
+          // setPosts(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+   }, []);
+  // (async () => {
+  //     // GET request using fetch with async/await
+  //     const response = await fetch('https://ayturwuui6.execute-api.us-east-1.amazonaws.com/test/employee',{mode:'cors'});
+  //     const data = await response.json();
+  //     console.log('data' , data);
+  // })();
+}
 export default function Sidebar(){
+
+    
+    Employees_dropdown()
+  
     const [open, setOpen] = React.useState(true);
     const toggleDrawer = () => {
       setOpen(!open);

@@ -55,8 +55,6 @@ export default function ApplyLeave(){
         apply_for_leave_obj.date_diff = toDate.diff(fromDate, 'days');
 
         console.log(apply_for_leave_obj);
-        
-
     }
 
     return(
