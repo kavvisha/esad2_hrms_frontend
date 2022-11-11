@@ -47,12 +47,15 @@ export default function ApplyLeave(){
 
     // when applying for leave
     const apply_for_leave = () => {
+        
+        let selectedEmp = JSON.parse(window.localStorage.getItem('active_user'));
         const apply_for_leave_obj = [];
-        apply_for_leave_obj.leave_type = leaveType;
-        apply_for_leave_obj.from_date = fromDate.format('DD M YYYY');
-        apply_for_leave_obj.to_date = toDate.format('DD M YYYY');
-        apply_for_leave_obj.leave_descr = leaveDescr;
-        apply_for_leave_obj.date_diff = toDate.diff(fromDate, 'days');
+        apply_for_leave_obj.empId = selectedEmp['id'];
+        apply_for_leave_obj.type = leaveType;
+        apply_for_leave_obj.fromDate = fromDate.format('DD M YYYY');
+        apply_for_leave_obj.toDate = toDate.format('DD M YYYY');
+        apply_for_leave_obj.description = leaveDescr;
+        apply_for_leave_obj.duration = toDate.diff(fromDate, 'days');
 
         console.log(apply_for_leave_obj);
     }

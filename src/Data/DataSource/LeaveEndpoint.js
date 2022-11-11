@@ -3,8 +3,7 @@ export function getManagerDashboardLeaves(){
     fetch('https://740j0t1wub.execute-api.us-east-1.amazonaws.com/dev/leave')
     .then((response) => response.json())
     .then((data) => {
-        setEmployees(data);
-        return Promise.resolve({ error: null, result: response_return });
+        return Promise.resolve({ error: null, result: data });
     })
     .catch((err) => {
         console.log(err.message);
@@ -17,8 +16,7 @@ export function getLeaveById(leave_id){
     fetch('https://740j0t1wub.execute-api.us-east-1.amazonaws.com/dev/leave?id='+leave_id)
     .then((response) => response.json())
     .then((data) => {
-        setEmployees(data);
-        return Promise.resolve({ error: null, result: response_return });
+        return Promise.resolve({ error: null, result: data });
     })
     .catch((err) => {
         console.log(err.message);
@@ -36,8 +34,7 @@ export function applyLeave(leave_node){
     })
     .then((response) => response.json())
     .then((data) => {
-        setEmployees(data);
-        return Promise.resolve({ error: null, result: response_return });
+        return Promise.resolve({ error: null, result: data });
     })
     .catch((err) => {
         console.log(err.message);
@@ -55,8 +52,7 @@ export function updateLeave(leave_node){
     })
     .then((response) => response.json())
     .then((data) => {
-        setEmployees(data);
-        return Promise.resolve({ error: null, result: response_return });
+        return Promise.resolve({ error: null, result: data });
     })
     .catch((err) => {
         console.log(err.message);
@@ -69,8 +65,7 @@ export function getLeaveDetails(emp_id){
     fetch('https://740j0t1wub.execute-api.us-east-1.amazonaws.com/dev/leave?empId='+emp_id)
     .then((response) => response.json())
     .then((data) => {
-        setEmployees(data);
-        return Promise.resolve({ error: null, result: response_return });
+        return Promise.resolve({ error: null, result: data });
     })
     .catch((err) => {
         console.log(err.message);
