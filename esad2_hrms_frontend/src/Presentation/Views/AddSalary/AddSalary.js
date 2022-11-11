@@ -41,25 +41,54 @@ export default function AddSalary(){
     const selectLeaveType = (event) => {
         setLeaveType(event.target.value);
     }
-    const [fromDate, setFromDate] = React.useState(null);
-    const [toDate, setToDate] = React.useState(null);
+
+    const [salaryDate, setsalaryDate] = React.useState(null);
+
+    
+
 
     const [leaveDescr, setLeaveDescr] = React.useState('');
     const addLeaveDescr = (event) => {
         setLeaveDescr(event.target.value);
     };
 
+    const [salBasic, setBasic] = React.useState('');
+    const addBasic = (event) => {
+        setBasic(event.target.value);
+    };
+
+
+    const [salTax, setTax] = React.useState('');
+    const addTax = (event) => {
+        setTax(event.target.value);
+    };
+
+    const [salDeductions, setDeductions] = React.useState('');
+    const addDeductions = (event) => {
+        setDeductions(event.target.value);
+    };
+    
+    const [salAllowance, setAllowance] = React.useState('');
+    const addAllowance = (event) => {
+        setAllowance(event.target.value);
+    };
+  
+  
+
        // when applying for leave
        const apply_for_leave = () => {
 
-        const apply_for_leave_obj = [];
-        apply_for_leave_obj.leave_type = leaveType;
-        apply_for_leave_obj.from_date = fromDate._d;
-        apply_for_leave_obj.to_date = toDate._d;
-        apply_for_leave_obj.leave_descr = leaveDescr;
-        apply_for_leave_obj.date_diff = toDate.diff(fromDate, 'days');
+        const add_salary_obj = [];
+        add_salary_obj.emp_id = emp_id;
+        add_salary_obj.salBasic = salBasic;
+        add_salary_obj.salTax = salTax;
+        add_salary_obj.salDeductions = salDeductions;
+        add_salary_obj.salAllowance = salAllowance;
+        add_salary_obj.leave_type = leaveType;
+        add_salary_obj.salaryDate = salaryDate.format('M YYYY');
+        add_salary_obj.leave_descr = leaveDescr;
 
-        console.log(apply_for_leave_obj);
+        console.log(add_salary_obj);
         
 
     }
@@ -83,7 +112,7 @@ export default function AddSalary(){
                     
                     <React.Fragment >
                         <FormControl fullWidth sx={{mb:1 , mt:1}}>
-                            <InputLabel id="demo-simple-select-label">Leave Type</InputLabel>
+                            <InputLabel id="demo-simple-select-label">Salary Type</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
@@ -91,46 +120,46 @@ export default function AddSalary(){
                                 label="Age"
                                 onChange={ selectLeaveType }
                             >
-                                <MenuItem value={"Annual"}>Annual</MenuItem>
-                                <MenuItem value={"Casual"}>Casual</MenuItem>
-                                <MenuItem value={"Sick"}>Sick</MenuItem>
-                                <MenuItem value={"Halfday"}>Halfday</MenuItem>
-                                <MenuItem value={"No Pay"}>No Pay</MenuItem>
+                                <MenuItem value={"Annual"}>1st Half</MenuItem>
+                                <MenuItem value={"Casual"}>2nd Half</MenuItem>
+                                <MenuItem value={"Casual"}>Full Salary</MenuItem>
                             </Select>
                         </FormControl>
-                        <FormControl fullWidth sx={{mb:1 , mt:1}}>
-                            <LocalizationProvider dateAdapter={AdapterDayjs} sx={{mb:10}}>
-                                <DatePicker
-                                    label="From"
-                                    value={fromDate}
-                                    onChange={(newFromDate) => {
-                                        let formatted_from_date = moment(new Date(newFromDate));
-                                        // formatted_from_date.format('LL');
-                                        setFromDate(formatted_from_date);
-                                    }}
-                                    
-                                    renderInput={(params) => <TextField {...params} />}
-                                />
-                            </LocalizationProvider>
-                        </FormControl>
-
+                        
                         <FormControl fullWidth sx={{mb:1 , mt:1}}>
                             <LocalizationProvider dateAdapter={AdapterDayjs} >
                                 <DatePicker
-                                    label="To"
-                                    value={toDate}
-                                    onChange={(newToDate) => {
-                                        let formatted_to_date = moment(new Date(newToDate));
+                                    label="Month"
+                                    value={salaryDate}
+                                    views={['year', 'month']}
+                                    onChange={(newsalaryDate) => {
+                                        let formatted_to_date = moment(new Date(newsalaryDate));
                                         // formatted_to_date.format('DD MM YYYY');
-                                        setToDate(formatted_to_date);
+                                        setsalaryDate(formatted_to_date);
                                     }}
-                                    renderInput={(params) => <TextField {...params} />}
+                                    renderInput={(params) =>  <TextField {...params} helperText={null} />}
                                 />
                             </LocalizationProvider>
                         </FormControl>
 
                         <FormControl fullWidth sx={{mb:1 , mt:1}}>
-                            <TextField value={leaveDescr} onChange={ addLeaveDescr } id="outlined-basic" label="Description" variant="outlined" sx={{mb:1}}/>
+                            <TextField type="number" value={salBasic} onChange={ addBasic } id="outlined-basic" label="Basic" variant="outlined" sx={{mb:1}} inputProps={{maxLength: 20,step: "3"}}/>
+                        </FormControl>
+                        
+                        <FormControl fullWidth sx={{mb:1 , mt:1}}>
+                            <TextField type="number" value={salTax} onChange={ addTax } id="outlined-tax" label="Tax" variant="outlined" sx={{mb:1}} inputProps={{maxLength: 20,step: "3"}}/>
+                        </FormControl>
+                        
+                        <FormControl fullWidth sx={{mb:1 , mt:1}}>
+                            <TextField type="number" value={salDeductions} onChange={ addDeductions } id="outlined-deductions" label="Deductions" variant="outlined" sx={{mb:1}} inputProps={{maxLength: 20,step: "3"}}/>
+                        </FormControl>
+                        
+                        <FormControl fullWidth sx={{mb:1 , mt:1}}>
+                            <TextField type="number" value={salAllowance} onChange={ addAllowance } id="outlined-allowance" label="Allowance" variant="outlined" sx={{mb:1}} inputProps={{maxLength: 20,step: "3"}}/>
+                        </FormControl>
+
+                        <FormControl fullWidth sx={{mb:1 , mt:1}}>
+                            <TextField value={leaveDescr} onChange={ addLeaveDescr } id="outlined-basic" label="Description" variant="outlined" sx={{mb:1}} />
                         </FormControl>
 
                         <FormControl fullWidth sx={{mb:1 , mt:1}}>
@@ -156,7 +185,6 @@ export default function AddSalary(){
                         overflowY: 'scroll'
                     }}
                 >
-                    
                     <SubTitle title="User's Salary history"/>
                     <React.Fragment >
                         <Alert severity="info" sx={{ mb: 1 }}>
