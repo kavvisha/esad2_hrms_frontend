@@ -19,6 +19,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
@@ -74,7 +79,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
         }),
       },
     }),
-  );
+);
 
 const mainListItems = (
   
@@ -105,52 +110,61 @@ const mainListItems = (
 </React.Fragment>
 );
 
-export function Employees_dropdown(){
-  //  'https://ayturwuui6.execute-api.us-east-1.amazonaws.com/test'
-  // https://api.publicapis.org/entries  
+export function Test_apis(){
   const [posts, setPosts] = useState([]);
-   useEffect(() => {
-      fetch('https://dfguqaaet4.execute-api.us-east-1.amazonaws.com/dev/employee', 
-      // fetch('https://api.publicapis.org/entries', 
-      {
-        method: 'GET',  
-        crossorigin: false,  
-        mode: 'cors',
-        // headers: {
-        //   'Accept' : '*/*',
-        //   'Access-Control-Allow-Origin' : '*',
-        //   // 'Access-Control-Request-Headers' : '*',
-        //   // 'Content-Type': 'application/x-www-form-urlencoded',
-        // },   
-      })
-      .then((response) => console.log(response.json()))
-      .then((data) => {
-          console.log(data);
-          // setPosts(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-   }, []);
-  // (async () => {
-  //     // GET request using fetch with async/await
-  //     const response = await fetch('https://ayturwuui6.execute-api.us-east-1.amazonaws.com/test/employee',{mode:'cors'});
-  //     const data = await response.json();
-  //     console.log('data' , data);
-  // })();
+  useEffect(() => {
+     fetch('https://740j0t1wub.execute-api.us-east-1.amazonaws.com/dev/leave?empId=3')
+        .then((response) => response.json())
+        .then((data) => {
+           console.log(data);
+           setPosts(data);
+        })
+        .catch((err) => {
+           console.log(err.message);
+        });
+  }, []);
+  console.log(posts);
 }
-export default function Sidebar(){
 
-    
-    Employees_dropdown()
+export default function Sidebar(){
   
     const [open, setOpen] = React.useState(true);
     const toggleDrawer = () => {
       setOpen(!open);
     };
 
+    // for the employees dropdown selection
+    const [employees, setEmployees] = useState([]);
+    const [selected_emp,setSelectedEmployee] = React.useState('');
+    const selectEmployeeToUI = (event) => {
+      let emp_select = event.target.value;
+      setSelectedEmployee(emp_select);
+      employees.forEach(element => {
+        console.log(element);
+        if(element['id'] == emp_select){
+          window.localStorage.setItem('active_user',JSON.stringify(element));
+        }
+      });
+    }
+  
+    useEffect(() => {
+      // set selected user on page load
+      let selectedEmp = JSON.parse(window.localStorage.getItem('active_user'));
+      setSelectedEmployee(selectedEmp['id']);
+      
+      fetch('https://dfguqaaet4.execute-api.us-east-1.amazonaws.com/dev/employee')
+          .then((response) => response.json())
+          .then((data) => {
+            setEmployees(data);
+          })
+          .catch((err) => {
+             console.log(err.message);
+          });
+    }, []);
+
     return(
         <React.Fragment>
+            {Test_apis()}
             <Drawer variant="permanent" open={open}>
                 <Toolbar
                 sx={{
@@ -177,6 +191,24 @@ export default function Sidebar(){
                     pr: '24px', // keep right padding when drawer closed
                 }}
                 >
+                
+                <FormControl sx={{mb:2 , mt:2 , width:'200px', background:'white', outline:'none'}}>
+                  <InputLabel id="selectEmployeeLabel">Select Employee</InputLabel>
+                  <Select
+                      labelId="selectEmployeeLabel"
+                      id="selectEmployee"
+                      value={selected_emp}
+                      label="Age"
+                      onChange={ selectEmployeeToUI }
+                  >
+                      {employees.map( (employee) => (
+                          <MenuItem key={employee.id} value={employee.id}>{employee.fname+' '+employee.lname}</MenuItem>
+                      ))}
+
+                  </Select>
+              </FormControl>
+
+
                 <IconButton
                     edge="start"
                     color="inherit"
