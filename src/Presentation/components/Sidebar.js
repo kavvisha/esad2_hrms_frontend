@@ -133,55 +133,58 @@ export function Test_apis(){
   // leave_node.duration = 0;
   // leave_node.type = "Sick";
   // leave_node.description = "Having fever";
+            // let leave_node = {
+            //   "empId": "003",
+            //   "toDate": "Fri Nov 02 2022 00:00:00 GMT+0530",
+            //   "fromDate": "Fri Nov 05 2022 00:00:00 GMT+0530",
+            //   "duration": 0,
+            //   "type": "Sick",
+            //   "description": "Having fever"
+            // }
 
-  // console.log(leave_node);
+            // leave_node = JSON.stringify(leave_node) ;
+            // console.log(leave_node);
 
-  // const [posts, setPosts] = useState([]);
+            // const [posts, setPosts] = useState([]);
 
-  // fetch('https://740j0t1wub.execute-api.us-east-1.amazonaws.com/dev/leave',
-  // {
-  //     method: 'PUT',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: leave_node,
-  //     mode: 'cors'
-  // })
-  // .then((response) => response.json())
-  // .then((data) => {
-  //   setPosts(data);
-  // })
-  // .catch((err) => {
-  //   console.log(err.message);
-  // });
-  // console.log(posts);
+            // fetch('https://740j0t1wub.execute-api.us-east-1.amazonaws.com/dev/leave',
+            // {
+            //     method: 'PUT',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: leave_node,
+            //     mode: 'cors'
+            // })
+            // .then((response) => response.json())
+            // .then((data) => {
+            //   setPosts(data);
+            // })
+            // .catch((err) => {
+            //   console.log(err.message);
+            // });
+            // console.log(posts);
 
-  const leave_node = {"description":"September","type":"2","basicAmount":230000,"taxAmount":35604.27, "deductions":750.03, "allowance":59006,"empId":"3"};
-  
-  // leave_node.empId = "003";
-  // leave_node.toDate = "Fri Nov 02 2022 00:00:00 GMT+0530";
-  // leave_node.fromDate = "Fri Nov 02 2022 00:00:00 GMT+0530";
-  // leave_node.duration = 0;
-  // leave_node.type = "Sick";
-  // leave_node.description = "Having fever";
+      let leave_node = {"description":"September","type":"2","basicAmount":230000,"taxAmount":35604.27, "deductions":750.03, "allowance":59006,"empId":"3"};
+      leave_node = JSON.stringify(leave_node) ;
 
-  console.log(leave_node);
+      console.log(leave_node);
 
-  const [posts, setPosts] = useState([]);
+      const [posts, setPosts] = useState([]);
 
-  fetch('https://xm3e5msswl.execute-api.us-east-1.amazonaws.com/dev/salary',
-  {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' , 'Access-Control-Allow-Origin' : '*'},
-      body: leave_node,
-      mode: 'cors'
-  })
-  .then((response) => response.json())
-  .then((data) => {
-    setPosts(data);
-  })
-  .catch((err) => {
-    console.log(err.message);
-  });
-  console.log(posts);
+      fetch('https://xm3e5msswl.execute-api.us-east-1.amazonaws.com/dev/salary',
+      {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' , 'Access-Control-Allow-Origin' : '*'},
+          body: leave_node,
+          mode: 'cors'
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        setPosts(data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+      console.log(posts);
 }
 
 export default function Sidebar(){
