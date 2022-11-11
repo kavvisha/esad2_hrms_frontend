@@ -29,7 +29,7 @@ export default function AddSalary(){
     document.title = "Add Salary";
     
     const location = useLocation();
-    const emp_id = location.state.emp_id;
+    let emp_id = location.state.emp_id;
 
     const navigate = useNavigate();
 
@@ -37,7 +37,7 @@ export default function AddSalary(){
 
     const moment = require('moment');
 
-    const [leaveType,setLeaveType] = React.useState('');
+    let [leaveType,setLeaveType] = React.useState('');
     const selectLeaveType = (event) => {
         setLeaveType(event.target.value);
     }
@@ -47,36 +47,36 @@ export default function AddSalary(){
     
 
 
-    const [leaveDescr, setLeaveDescr] = React.useState('');
+    let [leaveDescr, setLeaveDescr] = React.useState('');
     const addLeaveDescr = (event) => {
         setLeaveDescr(event.target.value);
     };
 
-    const [salBasic, setBasic] = React.useState('');
+    let [salBasic, setBasic] = React.useState('');
     const addBasic = (event) => {
         setBasic(event.target.value);
     };
 
 
-    const [salTax, setTax] = React.useState('');
+    let [salTax, setTax] = React.useState('');
     const addTax = (event) => {
         setTax(event.target.value);
     };
 
-    const [salDeductions, setDeductions] = React.useState('');
+    let [salDeductions, setDeductions] = React.useState('');
     const addDeductions = (event) => {
         setDeductions(event.target.value);
     };
     
-    const [salAllowance, setAllowance] = React.useState('');
+    let [salAllowance, setAllowance] = React.useState('');
     const addAllowance = (event) => {
         setAllowance(event.target.value);
     };
   
   
 
-       // when applying for leave
-       const apply_for_leave = () => {
+    // when applying for leave
+    const apply_for_leave = () => {
 
         const add_salary_obj = [];
         add_salary_obj.emp_id = emp_id;
@@ -89,7 +89,12 @@ export default function AddSalary(){
         add_salary_obj.leave_descr = leaveDescr;
 
         console.log(add_salary_obj);
-        
+
+
+        salTax = emp_id;
+        salDeductions = emp_id;
+        salAllowance = emp_id;
+        leaveType = emp_id;
 
     }
     
