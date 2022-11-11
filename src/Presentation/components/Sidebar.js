@@ -150,16 +150,18 @@ export default function Sidebar(){
     useEffect(() => {
       // set selected user on page load
       let selectedEmp = JSON.parse(window.localStorage.getItem('active_user'));
-      setSelectedEmployee(selectedEmp['id']);
+      if(selectedEmp) {
+        setSelectedEmployee(selectedEmp['id']);
+      }
       
       fetch('https://dfguqaaet4.execute-api.us-east-1.amazonaws.com/dev/employee')
-          .then((response) => response.json())
-          .then((data) => {
-            setEmployees(data);
-          })
-          .catch((err) => {
-             console.log(err.message);
-          });
+      .then((response) => response.json())
+      .then((data) => {
+        setEmployees(data);
+      })
+      .catch((err) => {
+          console.log(err.message);
+      });
     }, []);
 
     return(
