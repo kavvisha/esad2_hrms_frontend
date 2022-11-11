@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/esad2_hrms_frontend/esad2_hrms_frontend/static/css/main.073c9b0a.css",
+    "main.js": "/esad2_hrms_frontend/esad2_hrms_frontend/static/js/main.ed4de2b0.js",
+    "static/js/651.188a1adb.chunk.js": "/esad2_hrms_frontend/esad2_hrms_frontend/static/js/651.188a1adb.chunk.js",
+    "index.html": "/esad2_hrms_frontend/esad2_hrms_frontend/index.html",
+    "main.073c9b0a.css.map": "/esad2_hrms_frontend/esad2_hrms_frontend/static/css/main.073c9b0a.css.map",
+    "main.ed4de2b0.js.map": "/esad2_hrms_frontend/esad2_hrms_frontend/static/js/main.ed4de2b0.js.map",
+    "651.188a1adb.chunk.js.map": "/esad2_hrms_frontend/esad2_hrms_frontend/static/js/651.188a1adb.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.ed4de2b0.js"
+  ]
+}
