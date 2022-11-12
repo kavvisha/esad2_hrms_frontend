@@ -33,8 +33,9 @@ import DateRangeIcon from '@mui/icons-material/DateRange';
 import MoneyIcon from '@mui/icons-material/Money';
 
 const drawerWidth = 240;
-const  emptype = 4;
 
+let emptype = 4;
+let selectedEmpGlobal = JSON.parse(window.localStorage.getItem('active_user'))
 
 
 const AppBar = styled(MuiAppBar, {
@@ -84,6 +85,10 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const mainListItems = (
   
   <React.Fragment>
+  
+    
+      
+    
     <ListItemButton to="/">
         <ListItemIcon>
             <DashboardIcon />
@@ -91,14 +96,14 @@ const mainListItems = (
         <ListItemText>Dashboard</ListItemText>
     </ListItemButton>
 
-    <ListItemButton to={ (emptype > 1) ? "/leaves/applyleave" : "/leaves"}>
+    <ListItemButton to={ ((selectedEmpGlobal['roleId'] == 2 ) || (selectedEmpGlobal['roleId'] == 3 )) ? "/leaves" : "/leaves/applyleave"}>
         <ListItemIcon>
             <DateRangeIcon />
         </ListItemIcon>
         <ListItemText>Leaves</ListItemText>
     </ListItemButton>
 
-    <ListItemButton to="/salaries">
+    <ListItemButton to={ ((selectedEmpGlobal['roleId'] == 2 ) || (selectedEmpGlobal['roleId'] == 3 )) ? "/salaries/view" : "/salaries" } >
         <ListItemIcon>
             <MoneyIcon />
         </ListItemIcon>
@@ -273,6 +278,7 @@ export default function Sidebar(){
     // for the employees dropdown selection
     const [employees, setEmployees] = useState([]);
     const [selected_emp,setSelectedEmployee] = React.useState('');
+    
     const selectEmployeeToUI = (event) => {
       let emp_select = event.target.value;
       setSelectedEmployee(emp_select);
@@ -282,6 +288,8 @@ export default function Sidebar(){
           window.localStorage.setItem('active_user',JSON.stringify(element));
         }
       });
+
+      window.location.reload(false);
     }
   
     useEffect(() => {
@@ -336,7 +344,7 @@ export default function Sidebar(){
                 }}
                 >
                 
-                <FormControl sx={{mb:2 , mt:2 , width:'200px', background:'white', outline:'none'}}>
+                <FormControl sx={{mb:0 , mt:0, width:'200px', background:'white', outline:'none'}}>
                   <InputLabel id="selectEmployeeLabel">Select Employee</InputLabel>
                   <Select
                       labelId="selectEmployeeLabel"
@@ -373,7 +381,7 @@ export default function Sidebar(){
                     style={ {textAlign : 'right'}}
                     sx={{ flexGrow: 1 }}
                 >
-                    {'Hello Manager'}
+                    {'Hello '+selectedEmpGlobal['fname']}
                 </Typography>
                 <IconButton color="inherit">
                     <Badge badgeContent={4} color="secondary">

@@ -25,6 +25,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import Leaves from './Presentation/Views/Leaves/Leaves';
 import Salaries from './Presentation/Views/Salaries/Salaries';
 import AddSalary from './Presentation/Views/AddSalary/AddSalary';
+import ViewSalaries from './Presentation/Views/ViewSalaries/ViewSalaries';
 import ApplyLeave from './Presentation/Views/ApplyLeave/ApplyLeave';
 import Dashboard from './Presentation/Views/Dashboard/Dashboard';
 import Sidebar from './Presentation/components/Sidebar';
@@ -73,6 +74,7 @@ function App() {
                       <Route path={"/leaves"} element={<Leaves/>}/>
                       <Route path={"/leaves/applyleave"} element={<ApplyLeave/>}/>
                       <Route path={"/salaries"} element={<Salaries/>}/>
+                      <Route path={"/salaries/view"} element={<ViewSalaries/>}/>
                       <Route path={"/salaries/addsalary"} element={<AddSalary/>}/>
                     </Routes>
                   </BrowserRouter>
