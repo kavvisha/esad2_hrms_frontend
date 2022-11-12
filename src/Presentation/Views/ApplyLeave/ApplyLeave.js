@@ -154,24 +154,24 @@ export default function ApplyLeave(){
                     <SubTitle title="Entitlement"/>
                     <React.Fragment >
                         <Box sx={{ width: '100%' , mt : 2, mb : 2}}>
-                            <Typography>{remaining.Annual}/14</Typography>
-                            <LinearProgress variant="determinate" value={(4/14)*100} />
+                            <Typography>Annual {remaining.Annual}/14</Typography>
+                            <LinearProgress variant="determinate" value={(remaining.Annual/14)*100} />
                         </Box>
                         <Box sx={{ width: '100%' , mb : 2}}>
-                            <Typography>{remaining.Casual}/10</Typography>
-                            <LinearProgress variant="determinate" value={(5/10)*100} />
+                            <Typography>Casual {remaining.Casual}/10</Typography>
+                            <LinearProgress variant="determinate" value={(remaining.Casual/10)*100} />
                         </Box>
                         <Box sx={{ width: '100%' , mb : 2}}>
-                            <Typography>{remaining.Sick}/10</Typography>
-                            <LinearProgress variant="determinate" value={(2/10)*100} />
+                            <Typography>Sick {remaining.Sick}/10</Typography>
+                            <LinearProgress variant="determinate" value={(remaining.Sick/10)*100} />
                         </Box>
                         <Box sx={{ width: '100%' , mb : 2}}>
-                            <Typography>{remaining.Halfday}/5</Typography>
-                            <LinearProgress variant="determinate" value={(2/5)*100} />
+                            <Typography>Halfday {remaining.Halfday}/5</Typography>
+                            <LinearProgress variant="determinate" value={(remaining.Halfday/5)*100} />
                         </Box>
                         <Box sx={{ width: '100%' , mb : 5}}>
-                            <Typography>{remaining.NoPay}/10</Typography>
-                            <LinearProgress variant="determinate" value={(10/10)*100} />
+                            <Typography>NoPay {remaining.NoPay}/10</Typography>
+                            <LinearProgress variant="determinate" value={(remaining.NoPay/10)*100} />
                         </Box>
                         
                     </React.Fragment>
