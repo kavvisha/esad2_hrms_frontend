@@ -67,10 +67,27 @@ export default function ApplyLeaveModel(){
 
     async function get_emp_all_leave_details(){
         let selectedEmp = JSON.parse(window.localStorage.getItem('active_user'));
-        const result = await domain_getLeaveDetails(selectedEmp['id']);
-        setError(error)
-        set_emp_leaves(result);
-        console.log(result);
+        // const result = await domain_getLeaveDetails(selectedEmp['id']);
+        // setError(error)
+        // set_emp_leaves(result);
+        // console.log(result);
+
+        fetch('https://740j0t1wub.execute-api.us-east-1.amazonaws.com/dev/leave?empId='+selectedEmp['id'],
+        {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            
+            console.log('emp_id', selectedEmp['id']);
+            console.log('get leave data',data);
+            set_emp_leaves(data);
+        })
+        .catch((err) => {
+            console.log(err.message);
+            
+        });
         
     }
 
