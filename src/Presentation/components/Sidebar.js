@@ -282,6 +282,7 @@ export default function Sidebar(){
     const selectEmployeeToUI = (event) => {
       let emp_select = event.target.value;
       setSelectedEmployee(emp_select);
+      
       employees.forEach(element => {
         console.log(element);
         if(element['id'] == emp_select){
