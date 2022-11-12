@@ -33,32 +33,11 @@ export default function ApplyLeave(){
 
     const moment = require('moment');
 
-    const [leaveType,setLeaveType] = React.useState('');
-    const selectLeaveType = (event) => {
-        setLeaveType(event.target.value);
-    }
-    const [fromDate, setFromDate] = React.useState(null);
-    const [toDate, setToDate] = React.useState(null);
+    let { type, fromDate, to_Date, description , applyNewVals, apply_for_leave, get_emp_all_leave_details} = useViewModel();
 
-    const [leaveDescr, setLeaveDescr] = React.useState('');
-    const addLeaveDescr = (event) => {
-        setLeaveDescr(event.target.value);
-    };
-
-    // when applying for leave
-    const apply_for_leave = () => {
-        
-        let selectedEmp = JSON.parse(window.localStorage.getItem('active_user'));
-        const apply_for_leave_obj = [];
-        apply_for_leave_obj.empId = selectedEmp['id'];
-        apply_for_leave_obj.type = leaveType;
-        apply_for_leave_obj.fromDate = fromDate.format('DD M YYYY');
-        apply_for_leave_obj.toDate = toDate.format('DD M YYYY');
-        apply_for_leave_obj.description = leaveDescr;
-        apply_for_leave_obj.duration = toDate.diff(fromDate, 'days');
-
-        console.log(apply_for_leave_obj);
-    }
+    useEffect(()=>{
+        get_emp_all_leave_details();
+    })
 
     return(
         <React.Fragment>
@@ -68,10 +47,10 @@ export default function ApplyLeave(){
             <Grid item xs={12} md={6} lg={6}>
                 <Paper
                     sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 'auto',
+                        p: 2,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        height: 'auto',
                     
                     }}
                 >
@@ -83,9 +62,15 @@ export default function ApplyLeave(){
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                value={leaveType}
+                                value={type}
                                 label="Age"
-                                onChange={ selectLeaveType }
+                                onChange={
+                                    (event) => {
+                                        // type = event.target.value;
+                                        applyNewVals(event.target.value, "type");    
+                                    }
+                                }
+                                   
                             >
                                 <MenuItem value={"Annual"}>Annual</MenuItem>
                                 <MenuItem value={"Casual"}>Casual</MenuItem>
@@ -99,11 +84,33 @@ export default function ApplyLeave(){
                                 <DatePicker
                                     label="From"
                                     value={fromDate}
-                                    onChange={(newFromDate) => {
-                                        let formatted_from_date = moment(new Date(newFromDate));
-                                        // formatted_from_date.format('LL');
-                                        setFromDate(formatted_from_date);
-                                    }}
+                                    onChange={
+                                        (newFromDate) => {
+                                            let formatted_frpm_date = moment(new Date(newFromDate));
+                                            // fromDate = newFromDate;   
+                                            applyNewVals(formatted_frpm_date, "fromDate")
+                                        }
+                                    }
+                                    
+                                    renderInput={(params) => <TextField {...params} />}
+                                />
+                            </LocalizationProvider>
+                        </FormControl>
+    
+                        <FormControl fullWidth sx={{mb:1 , mt:1}}>
+                            <LocalizationProvider dateAdapter={AdapterDayjs} sx={{mb:10}}>
+                                <DatePicker
+                                    label="To"
+                                    value={to_Date}
+                                    onChange={
+                                        (newToDate) => {
+                                            let formatted_to_date = moment(new Date(newToDate));
+                                            // let nnnnnnewfromDate = moment(new Date(fromDate));
+                                            to_Date = newToDate;   
+                                            applyNewVals(formatted_to_date, "to_Date");
+                                            // applyNewVals(newToDate.diff(nnnnnnewfromDate, 'days'), "duration");
+                                        }
+                                    }
                                     
                                     renderInput={(params) => <TextField {...params} />}
                                 />
@@ -111,22 +118,15 @@ export default function ApplyLeave(){
                         </FormControl>
 
                         <FormControl fullWidth sx={{mb:1 , mt:1}}>
-                            <LocalizationProvider dateAdapter={AdapterDayjs} >
-                                <DatePicker
-                                    label="To"
-                                    value={toDate}
-                                    onChange={(newToDate) => {
-                                        let formatted_to_date = moment(new Date(newToDate));
-                                        // formatted_to_date.format('DD MM YYYY');
-                                        setToDate(formatted_to_date);
-                                    }}
-                                    renderInput={(params) => <TextField {...params} />}
-                                />
-                            </LocalizationProvider>
-                        </FormControl>
-
-                        <FormControl fullWidth sx={{mb:1 , mt:1}}>
-                            <TextField value={leaveDescr} onChange={ addLeaveDescr } id="outlined-basic" label="Description" variant="outlined" sx={{mb:1}}/>
+                            <TextField 
+                                value={description}   
+                                onChange={
+                                    (event) => {
+                                        // description = event.target.value;
+                                        applyNewVals(event.target.value, "description");    
+                                    }
+                                } 
+                                id="outlined-basic" label="Description" variant="outlined" sx={{mb:1}}/>
                         </FormControl>
 
                         <FormControl fullWidth sx={{mb:1 , mt:1}}>

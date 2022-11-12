@@ -110,10 +110,10 @@ const mainListItems = (
 </React.Fragment>
 );
 
-export function Test_apis(){
+function Test_apis(){
   // const [posts, setPosts] = useState([]);
   // useEffect(() => {
-  //    fetch('https://740j0t1wub.execute-api.us-east-1.amazonaws.com/dev/leave?empId=3')
+  //    fetch('https://xm3e5msswl.execute-api.us-east-1.amazonaws.com/dev/salary?empId=1')
   //       .then((response) => response.json())
   //       .then((data) => {
   //          console.log(data);
@@ -133,62 +133,138 @@ export function Test_apis(){
   // leave_node.duration = 0;
   // leave_node.type = "Sick";
   // leave_node.description = "Having fever";
-            // let leave_node = {
-            //   "empId": "003",
-            //   "toDate": "Fri Nov 02 2022 00:00:00 GMT+0530",
-            //   "fromDate": "Fri Nov 05 2022 00:00:00 GMT+0530",
-            //   "duration": 0,
-            //   "type": "Sick",
-            //   "description": "Having fever"
-            // }
+         
+            let leave_node = {
+              id:"9",
+              empId: "003",
+              toDate: "Fri Nov 02 2022 00:00:00 GMT+0530",
+              fromDate: "Fri Nov 05 2022 00:00:00 GMT+0530",
+              duration: 0,
+              type: "Sick",
+              description: "Having fever"
+            }
 
-            // leave_node = JSON.stringify(leave_node) ;
-            // console.log(leave_node);
+            leave_node = JSON.stringify(leave_node) ;
+            console.log(leave_node);
 
             // const [posts, setPosts] = useState([]);
 
-            // fetch('https://740j0t1wub.execute-api.us-east-1.amazonaws.com/dev/leave',
-            // {
-            //     method: 'PUT',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: leave_node,
-            //     mode: 'cors'
-            // })
-            // .then((response) => response.json())
-            // .then((data) => {
-            //   setPosts(data);
-            // })
-            // .catch((err) => {
-            //   console.log(err.message);
-            // });
-            // console.log(posts);
+            fetch('https://740j0t1wub.execute-api.us-east-1.amazonaws.com/dev/leave',
+            {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: leave_node,
+                mode: 'cors'
+            })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log('leave put',data);
+            })
+            .catch((err) => {
+              console.log(err.message);
+            });
+          
+            leave_node = {
+              empId: "003",
+              toDate: "Fri Nov 02 2022 00:00:00 GMT+0530",
+              fromDate: "Fri Nov 05 2022 00:00:00 GMT+0530",
+              duration: 0,
+              type: "Sick",
+              description: "Having fever"
+            }
 
-      let leave_node = {"description":"September","type":"2","basicAmount":230000,"taxAmount":35604.27, "deductions":750.03, "allowance":59006,"empId":"3"};
-      leave_node = JSON.stringify(leave_node) ;
+            leave_node = JSON.stringify(leave_node) ;
+            console.log(leave_node);
 
-      console.log(leave_node);
+            // const [posts, setPosts] = useState([]);
 
-      const [posts, setPosts] = useState([]);
+            fetch('https://740j0t1wub.execute-api.us-east-1.amazonaws.com/dev/leave',
+            {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: leave_node,
+                mode: 'cors'
+            })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log('leave post', data);
+            })
+            .catch((err) => {
+              console.log(err.message);
+            });
+          
 
-      fetch('https://xm3e5msswl.execute-api.us-east-1.amazonaws.com/dev/salary',
-      {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' , 'Access-Control-Allow-Origin' : '*'},
-          body: leave_node,
-          mode: 'cors'
-      })
-      .then((response) => response.json())
-      .then((data) => {
-        setPosts(data);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-      console.log(posts);
+
+
+
+        leave_node = {
+          description:"September",
+          type:"2",
+          basicAmount:230000,
+          taxAmount:35604.27, 
+          deductions:750.03,
+          allowance:59006,
+          empId:"3"
+        }
+        let leave_node_str = JSON.stringify(leave_node);
+        console.log(leave_node);
+
+        // const [posts, setPosts] = useState([]);
+        
+        fetch('https://xm3e5msswl.execute-api.us-east-1.amazonaws.com/dev/salary',
+        {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: leave_node_str,
+          
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          // setPosts(data);
+          console.log('salary post',data);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+        // console.log(posts);
+
+
+
+        leave_node = {
+          id : '9',
+          description:"September",
+          type:"2",
+          basicAmount:230000,
+          taxAmount:35604.27, 
+          deductions:750.03,
+          allowance:59006,
+          empId:"3"
+        }
+        leave_node_str = JSON.stringify(leave_node);
+        console.log(leave_node);
+
+        // const [posts, setPosts] = useState([]);
+        
+        fetch('https://xm3e5msswl.execute-api.us-east-1.amazonaws.com/dev/salary',
+        {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: leave_node_str,
+          
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          // setPosts(data);
+          console.log('salary put',data);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+        // console.log(posts);
 }
 
 export default function Sidebar(){
-  
+ 
     const [open, setOpen] = React.useState(true);
     const toggleDrawer = () => {
       setOpen(!open);
@@ -209,25 +285,30 @@ export default function Sidebar(){
     }
   
     useEffect(() => {
-      // set selected user on page load
-      let selectedEmp = JSON.parse(window.localStorage.getItem('active_user'));
-      if(selectedEmp) {
-        setSelectedEmployee(selectedEmp['id']);
-      }
-      
-      fetch('https://dfguqaaet4.execute-api.us-east-1.amazonaws.com/dev/employee')
-      .then((response) => response.json())
-      .then((data) => {
-        setEmployees(data);
-      })
-      .catch((err) => {
-          console.log(err.message);
-      });
+
+      setTimeout(function(){
+        // Test_apis();
+        // set selected user on page load
+        let selectedEmp = JSON.parse(window.localStorage.getItem('active_user'));
+        if(selectedEmp) {
+          setSelectedEmployee(selectedEmp['id']);
+        }
+        
+        fetch('https://dfguqaaet4.execute-api.us-east-1.amazonaws.com/dev/employee')
+        .then((response) => response.json())
+        .then((data) => {
+          setEmployees(data);
+        })
+        .catch((err) => {
+            console.log(err.message);
+        });
+      },1000)
+
     }, []);
 
     return(
         <React.Fragment>
-            {Test_apis()}
+           
             <Drawer variant="permanent" open={open}>
                 <Toolbar
                 sx={{

@@ -62,9 +62,16 @@ export function updateLeave(leave_node){
 
 // get individual leave detail by employee
 export function getLeaveDetails(emp_id){
-    fetch('https://740j0t1wub.execute-api.us-east-1.amazonaws.com/dev/leave?empId='+emp_id)
+    fetch('https://740j0t1wub.execute-api.us-east-1.amazonaws.com/dev/leave?empId='+emp_id,
+    {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+    })
     .then((response) => response.json())
     .then((data) => {
+        
+        console.log('emp_id', emp_id);
+        console.log('get leave data',data);
         return Promise.resolve({ error: null, result: data });
     })
     .catch((err) => {

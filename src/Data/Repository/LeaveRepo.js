@@ -17,6 +17,7 @@ export async function repo_updateLeave(leave_node){
     return {result,error};
 }
 export async function repo_getLeaveDetails(emp_id){
-    const {result, error} = await getLeaveDetails(emp_id);
-    return {result,error};
+    const { result, error } = await getLeaveDetails(emp_id)
+    return { result, error }
+
 }
