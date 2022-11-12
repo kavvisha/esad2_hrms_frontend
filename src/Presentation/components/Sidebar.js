@@ -103,7 +103,7 @@ const mainListItems = (
         <ListItemText>Leaves</ListItemText>
     </ListItemButton>
 
-    <ListItemButton to={ ((selectedEmpGlobal['roleId'] == 2 ) || (selectedEmpGlobal['roleId'] == 3 )) ? "/salaries/view" : "/salaries" } >
+    <ListItemButton to={ ((selectedEmpGlobal['roleId'] == 2 ) || (selectedEmpGlobal['roleId'] == 3 )) ? "/salaries/" : "/salaries/view" } >
         <ListItemIcon>
             <MoneyIcon />
         </ListItemIcon>

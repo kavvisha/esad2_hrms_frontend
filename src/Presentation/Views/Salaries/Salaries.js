@@ -15,6 +15,17 @@ function Show_all_employees_salary(){
     const navigate = useNavigate();
     const return_all_employess = [];
 
+    // {employees.map( (employee) => (
+    //     return_all_employess.push(
+    // // <MenuItem key={employee.id} value={employee.id}>{employee.fname+' '+employee.lname}</MenuItem>
+    //     <Alert  key={employee.id} severity="info" sx={{ mb: 1 , cursor:'pointer' }} onClick = { () => {navigate('/salaries/addsalary',{state:{emp_id:employee.id}})}}> 
+    //             <AlertTitle>Info</AlertTitle>
+    //             This is an info alert — <strong>check it out!</strong>
+    //     </Alert>
+    //     )
+    // ))}
+
+
     for(var i = 0 ; i < 10 ; i++){
         let temp = i;
         return_all_employess.push(
