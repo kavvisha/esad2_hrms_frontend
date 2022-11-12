@@ -1,4 +1,4 @@
-import { getAllEmpSalaries, AddSalary, UpdateSalary } from "../DataSource/SalaryEndPoint";
+import { getAllEmpSalaries, AddSalary, UpdateSalary } from "../DataSource/SalaryEndpoint";
 
 export async function repo_getAllEmpSalaries(emp_id){
     const {result, error} = await getAllEmpSalaries(emp_id)();

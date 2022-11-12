@@ -3,8 +3,7 @@ export function getAllEmpSalaries(emp_id){
     fetch('https://xm3e5msswl.execute-api.us-east-1.amazonaws.com/dev/salary?empId='+emp_id)
     .then((response) => response.json())
     .then((data) => {
-        setEmployees(data);
-        return Promise.resolve({ error: null, result: response_return });
+        return Promise.resolve({ error: null, result: data });
     })
     .catch((err) => {
         console.log(err.message);
@@ -22,8 +21,7 @@ export function AddSalary(salary_node){
     })
     .then((response) => response.json())
     .then((data) => {
-        setEmployees(data);
-        return Promise.resolve({ error: null, result: response_return });
+        return Promise.resolve({ error: null, result: data });
     })
     .catch((err) => {
         console.log(err.message);
@@ -41,8 +39,7 @@ export function UpdateSalary(salary_node){
     })
     .then((response) => response.json())
     .then((data) => {
-        setEmployees(data);
-        return Promise.resolve({ error: null, result: response_return });
+        return Promise.resolve({ error: null, result: data });
     })
     .catch((err) => {
         console.log(err.message);

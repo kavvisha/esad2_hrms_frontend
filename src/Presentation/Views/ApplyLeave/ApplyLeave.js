@@ -33,7 +33,7 @@ export default function ApplyLeave(){
 
     const moment = require('moment');
 
-    let { type, fromDate, to_Date, description , applyNewVals, apply_for_leave, get_emp_all_leave_details} = useViewModel();
+    let { remaining, type, fromDate, to_Date, description , applyNewVals, apply_for_leave, get_emp_all_leave_details} = useViewModel();
 
     useEffect(()=>{
         get_emp_all_leave_details();
@@ -154,23 +154,23 @@ export default function ApplyLeave(){
                     <SubTitle title="Entitlement"/>
                     <React.Fragment >
                         <Box sx={{ width: '100%' , mt : 2, mb : 2}}>
-                            <Typography>Annual 4/14</Typography>
+                            <Typography>{remaining.Annual}/14</Typography>
                             <LinearProgress variant="determinate" value={(4/14)*100} />
                         </Box>
                         <Box sx={{ width: '100%' , mb : 2}}>
-                            <Typography>Casual 5/10</Typography>
+                            <Typography>{remaining.Casual}/10</Typography>
                             <LinearProgress variant="determinate" value={(5/10)*100} />
                         </Box>
                         <Box sx={{ width: '100%' , mb : 2}}>
-                            <Typography>Sick 2/10</Typography>
+                            <Typography>{remaining.Sick}/10</Typography>
                             <LinearProgress variant="determinate" value={(2/10)*100} />
                         </Box>
                         <Box sx={{ width: '100%' , mb : 2}}>
-                            <Typography>Halfday 2/5</Typography>
+                            <Typography>{remaining.Halfday}/5</Typography>
                             <LinearProgress variant="determinate" value={(2/5)*100} />
                         </Box>
                         <Box sx={{ width: '100%' , mb : 5}}>
-                            <Typography>NoPay 10/10</Typography>
+                            <Typography>{remaining.NoPay}/10</Typography>
                             <LinearProgress variant="determinate" value={(10/10)*100} />
                         </Box>
                         

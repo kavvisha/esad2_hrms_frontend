@@ -11,6 +11,7 @@ export default function ApplyLeaveModel(){
     const [values, setValues] = useState({});
 
     const [emp_leaves,set_emp_leaves] = useState([]);
+    const [remaining, setRemaining] = useState({});
 
     function applyNewVals(value,prop){
         setValues({...values, [prop]:value });
@@ -30,7 +31,7 @@ export default function ApplyLeaveModel(){
             empId: selectedEmp['id'],
             toDate: values.to_Date,
             fromDate: values.fromDate,
-            duration: 2,
+            duration: 1,
             type: values.type,
             description: values.description
         }
@@ -39,6 +40,7 @@ export default function ApplyLeaveModel(){
         setError(error)
         console.log('result',result);
         console.log('error',error);
+        get_emp_all_leave_details();
     }
   
     async function update_leave(){
@@ -82,7 +84,9 @@ export default function ApplyLeaveModel(){
             
             console.log('emp_id', selectedEmp['id']);
             console.log('get leave data',data);
+            console.log('get remaining',data.remaining);
             set_emp_leaves(data);
+            setRemaining(data.remaining);
         })
         .catch((err) => {
             console.log(err.message);
@@ -98,6 +102,7 @@ export default function ApplyLeaveModel(){
         update_leave,
         get_emp_all_leave_details,
         applyNewVals,
+        remaining,
     }
     
 }
